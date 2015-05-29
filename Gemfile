@@ -46,6 +46,7 @@ end
 
 gem 'fb_graph2'
 
+gem 'pg'
 gem 'activerecord-postgis-adapter'
 
 group :development, :test do

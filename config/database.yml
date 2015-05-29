@@ -14,7 +14,7 @@ development:
   encoding: unicode
   database: project_x_development
   pool: 5
-  username: root
+  username:
   password:
 
 test:
@@ -22,7 +22,7 @@ test:
   encoding: unicode
   database: project_x_test
   pool: 5
-  username: root
+  username:
   password:
 
 production:
@@ -30,5 +30,5 @@ production:
   encoding: unicode
   database: project_x_production
   pool: 5
-  username: root
+  username:
   password:
