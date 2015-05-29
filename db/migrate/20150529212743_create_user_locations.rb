@@ -4,6 +4,7 @@ class CreateUserLocations < ActiveRecord::Migration
       t.integer :user_id
       t.decimal :latitude, precision: 9, scale: 6
       t.decimal :longitude, precision: 9, scale: 6
+      t.decimal :radius, precision: 2, default: 5000
 
       t.timestamps null: false
     end
