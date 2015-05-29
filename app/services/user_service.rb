@@ -5,10 +5,13 @@ class UserService
   end
 
   def authenticate
+    return false if !validate_params
     if fb_user.present? and fb_user.id == fb_user_id
       user = User.where(:facebook_id => fb_user_id).first
       register if user.blank?
+      return true
     end
+    return false
   end
 
   def register
@@ -16,6 +19,7 @@ class UserService
     user.errors.messages if !user.save
   end
 
+  attr_reader :params
   private
 
   def auth_token
@@ -27,7 +31,12 @@ class UserService
   end
 
   def fb_user
-    FbGraph2::User.me(params[:auth_token]).fetch
+    begin
+      session = FbGraph2::User.me(auth_token).fetch
+    rescue
+      raise StandardError.new(@obj.errors.messages.to_s) if session.blank?
+    end
+    session
   end
 
   def location
@@ -35,7 +44,7 @@ class UserService
   end
 
   def hookup_with
-    fb_user.interested_in
+    HookupStatus.get_index(fb_user.interested_in[0].upcase) || 0
   end
 
   def name
@@ -43,7 +52,7 @@ class UserService
   end
 
   def email
-    fb_user.email
+    fb_user.email || ""
   end
 
   def date_of_birth
@@ -66,9 +75,13 @@ class UserService
       :date_of_birth => date_of_birth,
       :gender        => gender,
       :image_path    => image,
-      :video_path    => nil,
+      :video_path    => "",
       :hookup_with   => hookup_with
     }
+  end
+
+  def validate_params
+    auth_token.present? and location.present? and fb_user_id.present?
   end
 
 end
