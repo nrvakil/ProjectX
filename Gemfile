@@ -45,3 +45,14 @@ group :development, :test do
 end
 
 gem 'fb_graph2'
+
+gem 'activerecord-postgis-adapter'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
+end
