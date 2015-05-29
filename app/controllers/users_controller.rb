@@ -1,7 +1,7 @@
 class UsersController < ActionController::Base
 
   def index
-    
+    render :json => { :payload => JSON.parse(User.all.to_json) }, :status => 200
   end
 
   def authenticate_user
