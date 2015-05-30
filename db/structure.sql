@@ -44,6 +44,41 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: hook_ups; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE hook_ups (
+    id integer NOT NULL,
+    hooker integer NOT NULL,
+    hookie integer NOT NULL,
+    pinged_at date,
+    responded_at date,
+    hooked boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: hook_ups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE hook_ups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: hook_ups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE hook_ups_id_seq OWNED BY hook_ups.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -132,6 +167,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY hook_ups ALTER COLUMN id SET DEFAULT nextval('hook_ups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY user_locations ALTER COLUMN id SET DEFAULT nextval('user_locations_id_seq'::regclass);
 
 
@@ -140,6 +182,14 @@ ALTER TABLE ONLY user_locations ALTER COLUMN id SET DEFAULT nextval('user_locati
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: hook_ups_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY hook_ups
+    ADD CONSTRAINT hook_ups_pkey PRIMARY KEY (id);
 
 
 --
@@ -185,4 +235,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150529212743');
 INSERT INTO schema_migrations (version) VALUES ('20150529213359');
 
 INSERT INTO schema_migrations (version) VALUES ('20150529215357');
+
+INSERT INTO schema_migrations (version) VALUES ('20150530021237');
 

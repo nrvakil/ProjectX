@@ -14,7 +14,8 @@ class UserLocationService
   end
 
   def get_users_locations
-    UserLocation.where('user_id NOT IN (?)', [get.user_id]).close_to(get.latitude, get.longitude, get.radius).pluck(:user_id)
+    location = get
+    location.present? ? UserLocation.where('user_id NOT IN (?)', [location.user_id]).close_to(location.latitude, location.longitude, location.radius).pluck(:user_id) : []
   end
 
   attr_reader :params
