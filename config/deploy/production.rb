@@ -5,9 +5,8 @@
 
 server 'baluapps.com', user: 'projectx', roles: %w{app db web}
 server 'baluapps.com', user: 'projectx', roles: %w{app web}
-server 'baluapps.com', user: 'projectx', roles: %w{db}
 
-
+set :branch, ENV["REVISION"] || ENV["BRANCH_NAME"] || "master"
 
 # role-based syntax
 # ==================
@@ -41,10 +40,12 @@ server 'baluapps.com', user: 'projectx', roles: %w{db}
 #
 # Global options
 # --------------
+
 set :ssh_options, {
- keys: %w(~/.ssh/id_rsa),
- forward_agent: false,
- auth_methods: %w(password)
+    forward_agent: false,
+    auth_methods: %w(publickey),
+    keys: %w(~/.ssh/id_rsa),
+    user: 'projectx',
 }
 #
 # The server-based syntax can be used to override options:
