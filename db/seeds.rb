@@ -10,7 +10,7 @@ User.destroy_all
 UserLocation.destroy_all
 
 if User.count == 0
-  users = FactoryGirl.create_list(:user, 4)
+  users = FactoryGirl.create_list(:user, 1000)
   users.each do |user|
     FactoryGirl.create(:user_location, :user_id => user.id)
   end
