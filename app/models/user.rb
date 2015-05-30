@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   def to_user_hash
     {
-       id: 81,
+       id: self.id,
        email: self.email,
        name: self.name,
        date_of_birth: self.date_of_birth,
