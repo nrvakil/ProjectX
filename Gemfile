@@ -49,14 +49,13 @@ gem 'fb_graph2'
 gem 'pg'
 gem 'activerecord-postgis-adapter'
 
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'capybara'
-  gem 'guard-rspec'
-  gem 'launchy'
-end
+
+gem 'rspec-rails'
+gem 'factory_girl_rails'
+gem 'faker'
+gem 'capybara'
+gem 'guard-rspec'
+gem 'launchy'
 
 gem 'capistrano',  '~> 3.1'
 gem 'capistrano-rails', '~> 1.1'
