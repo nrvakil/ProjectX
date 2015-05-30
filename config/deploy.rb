@@ -14,7 +14,7 @@ set :deploy_to, '/home/projectx/projectx'
 set :scm, :git
 
 # Default value for :format is :pretty
-et :format, :pretty
+set :format, :pretty
 
 # Default value for :log_level is :debug
 # set :log_level, :debug
