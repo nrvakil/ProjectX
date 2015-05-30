@@ -12,7 +12,7 @@ class UsersLocationController < ActionController::Base
   end
 
   def get_nearby_people
-    location_service = UserLocation.new(params)
+    location_service = UserLocationService.new(params)
     user_service = UserService.new({ :user_ids => location_service.get_users_locations })
     render :json => { :payload => user_service.get_users }, :status => 200
   end
