@@ -115,7 +115,7 @@ class UserService
   end
 
   def validate_params
-    auth_token.present? and location.present? and fb_user_id.present?
+    auth_token.present? and fb_user_id.present?
   end
 
 end
