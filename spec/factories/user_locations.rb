@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :user_location do
-    user_id 1
-latitude "9.99"
-longitude "9.99"
+  factory :user_location do |ul|
+    ul.user_id           { Faker::Number.digit   }
+    ul.latitude          { rand(100)              }
+    ul.longitude         { rand(100)              }
+    ul.radius            { rand(6000)              }
   end
-
 end
