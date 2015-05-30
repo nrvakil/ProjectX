@@ -5,7 +5,6 @@ class UserService
   end
 
   def authenticate
-    debugger
     return false if !validate_params
     if fb_user.present? and fb_user.id == fb_user_id
       @user = User.where(:facebook_id => fb_user_id).first
