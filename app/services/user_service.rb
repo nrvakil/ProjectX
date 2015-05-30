@@ -100,4 +100,8 @@ class UserService
     auth_token.present? and location.present? and fb_user_id.present?
   end
 
+  def send (details = {})
+    # send notifications
+  end
+
 end
