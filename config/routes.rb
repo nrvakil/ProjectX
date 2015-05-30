@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'home#index'
+  resources :users
 
   get '/login' => 'users#authenticate_user'
   post '/set_location' => 'users_location#set_my_location'
