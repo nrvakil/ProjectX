@@ -24,7 +24,7 @@ class UserService
   end
 
   def get_users
-    User.where("id IN (?)", users).all
+    User.where("id IN (?) AND status = (?)", users, status).all
   end
 
   attr_reader :params
@@ -32,6 +32,10 @@ class UserService
 
   def users
     params[:user_ids]
+  end
+
+  def status
+    Status::FRESH
   end
 
   def user_id
