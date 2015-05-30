@@ -2,7 +2,17 @@ class UsersController < ActionController::Base
   before_filter :authenticate_user unless :logged_in?
 
   def index
-    users = User.all.collect {|user| user.to_user_hash }
+    users = User.all.collect { |u|
+      {
+        :id              => u.id,
+        :name            => u.name,
+        :age             => u.date_of_birth,
+        :image_path      => u.image_path,
+        :distance        => "",
+        :last_sign_in_at => u.last_sign_in_at,
+        :my_id           => 2014
+      }
+    }
     render :json => { :payload => users }, :status => 200
   end
 
