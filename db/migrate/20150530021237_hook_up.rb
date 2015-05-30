@@ -6,6 +6,7 @@ class HookUp < ActiveRecord::Migration
       t.date     :pinged_at
       t.date     :responded_at
       t.boolean  :hooked
+      t.integer  :status, :default => HookStatus::ACTIVE
       t.timestamps
     end
   end

@@ -4,7 +4,7 @@ class HookingService
     @params = params
   end
 
-  def tap
+  def hook_up
     @hookup = HookUp.new(create_hookup_hash)
     set_users
     @hookup.save ? notify : @hookup.errors.messages
@@ -48,13 +48,13 @@ class HookingService
   end
 
   def share_details
-    hooker.send({ :message => "#{hookie.number}" })
-    hookie.send({ :message => "#{hooker.number}" })
+    # hooker.send_notification({ :message => "#{hookie.number}" })
+    # hookie.send_notification({ :message => "#{hooker.number}" })
   end
 
   def notify
-    hooker.send({ :message => "hookup request sent!" })
-    hookie.send({ :message => "new hookup request!" })
+    # hooker.send_notification({ :message => "hookup request sent!" })
+    # hookie.send_notification({ :message => "new hookup request!" })
   end
 
 end

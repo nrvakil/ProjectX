@@ -54,6 +54,7 @@ CREATE TABLE hook_ups (
     pinged_at date,
     responded_at date,
     hooked boolean,
+    status integer DEFAULT 1,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );

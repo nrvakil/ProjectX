@@ -5,7 +5,7 @@ class UserLocationService
   end
 
   def set
-    locaiton = UserLocation.new(create_location_hash)
+    locaiton = get || UserLocation.new(create_location_hash)
     location.errors.messages if !locaiton.save
   end
 

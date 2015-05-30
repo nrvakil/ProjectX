@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   resources :users
-  get '/people' => 'users#authenticate_user'
+  get '/login' => 'users#authenticate_user'
 
   post '/set_location' => 'users_location#set_my_location'
   get  '/get_nearby_people' => 'users_location#get_nearby_people'
+
+  post '/hookup' => 'hook_up#hookup'
+  post '/respond' => 'hook_up#respond'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

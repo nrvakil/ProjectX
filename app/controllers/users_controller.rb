@@ -10,8 +10,10 @@ class UsersController < ActionController::Base
     result = user_service.authenticate
 
     if result
-      @user = user_service.get_user
-      render :json => { :payload => { :user_id => @user.id }, :message => "Successfully Created a User" }, :status => 200
+      location_service = UserLocationService.new(params.merge!({ :user_id => user_service.get_user.id }))
+      location_service.set
+      params.merge!({ :user_ids => location_service.get_users_locations })
+      render :json => { :payload => user_service.get_users }, :status => 200
     else
       render :json => { :payload => [], :message => "Error in User creation", :errors => result }, :status => 402
     end

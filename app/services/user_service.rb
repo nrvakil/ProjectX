@@ -24,10 +24,24 @@ class UserService
   end
 
   def get_users
-    User.where("id IN (?) AND status = (?)", users, status).all
+    User.where("id IN (?) AND status = (?)", users, status).collect { |u|
+      {
+        :id              => u.id,
+        :name            => u.name,
+        :age             => u.date_of_birth,
+        :image_path      => u.image_path,
+        :distance        => "",
+        :last_sign_in_at => u.last_sign_in_at,
+        :my_id           => user_id
+      }
+    }
   end
 
-  attr_reader :params
+  def send_notification (details = {})
+    details[:message]
+  end
+
+  attr_reader :params, :user
   private
 
   def users
@@ -102,10 +116,6 @@ class UserService
 
   def validate_params
     auth_token.present? and location.present? and fb_user_id.present?
-  end
-
-  def send (details = {})
-    # send notifications
   end
 
 end
