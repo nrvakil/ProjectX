@@ -61,7 +61,7 @@ CREATE TABLE user_locations (
     user_id integer,
     latitude numeric(9,6),
     longitude numeric(9,6),
-    radius numeric(2,0) DEFAULT 5000,
+    radius integer DEFAULT 5000,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

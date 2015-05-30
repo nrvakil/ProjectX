@@ -7,20 +7,36 @@ class UserService
   def authenticate
     return false if !validate_params
     if fb_user.present? and fb_user.id == fb_user_id
-      user = User.where(:facebook_id => fb_user_id).first
-      register if user.blank?
+      @user = User.where(:facebook_id => fb_user_id).first
+      register if @user.blank?
       return true
     end
     return false
   end
 
   def register
-    user = User.new(create_user_hash)
-    user.errors.messages if !user.save
+    @user = User.new(create_user_hash)
+    @user.errors.messages if !@user.save
+  end
+
+  def get_user
+    @user || User.where(:id => user_id).first
+  end
+
+  def get_users
+    User.where("id IN (?)", users).all
   end
 
   attr_reader :params
   private
+
+  def users
+    params[:user_ids]
+  end
+
+  def user_id
+    params[:user_id]
+  end
 
   def auth_token
     params[:auth_token]
